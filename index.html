@@ -1,0 +1,525 @@
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container_read">
+<!--    search  -->
+      <form class='search-form_read'>
+        <input type="text" class="search-bar_read" placeholder="url" />
+        <div class='search-btn_read'>
+          <button type='submit'>
+            <i class="fa fa-search search_read"></i>
+          </button>
+        </div>
+      </form>
+   <p class="discription_read">
+     Copy the url of articles's site and paste into the search box e.g. any medium blog or use mine link <span class='click_read'>
+     click here
+     </span> .
+   </p>
+<!--     -->
+   <div class="loader_read hide_read"></div>
+   <div class="error_read hide_read">
+     <p class="text">Your url is not valid or cannot able to fetch article.</p>
+   </div>
+  <div class='center-wrapper_read hide_read'>
+    <h1 class='title_read'></h1>
+      <p class='specification_read'>  <span class='name_read'>  </span></p>
+<div class="wrapper_read">
+
+
+<div class="article_read">
+  
+  
+</div>
+  </div>
+
+</div>
+</div>
+<style>
+span.click_read {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+* {
+  color: #666;
+  font-family: 'Poppins', sans-serif;
+}
+
+.error_read {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 34px;
+  color: #858585;
+}
+.error_read.hide_read {
+  display: none;
+}
+
+.discription_read {
+  width: 400px;
+  text-align-last: center;
+  line-height: 25px;
+  margin-left: calc(50vw - 200px);
+}
+.discription_read.hide_read {
+  display: none;
+}
+@media only screen and (max-width: 425px) {
+  .discription_read {
+    width: 300px;
+    margin-left: calc(50vw - 150px);
+  }
+}
+
+body {
+  background: white;
+}
+
+button {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  opacity: 0.6;
+  left: -10px;
+}
+
+button:focus {
+  outline: none;
+}
+
+.search-bar_read {
+  position: relative;
+  background: #FFF;
+  border: none;
+  opacity: 0.7;
+  width: 230px;
+  box-shadow: 0px 1px 150px #d6dee4;
+  padding-left: 30px;
+  font-size: 20px;
+  height: 50px;
+  border-radius: 50px 0px 0px 50px;
+}
+
+.search-bar_read:focus {
+  outline: none;
+  opacity: 1;
+  transition: border 0.2sec ease;
+}
+
+.search-bar_read::selection {
+  background: #F5F5F5;
+}
+
+.search-btn_read {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  width: 40px;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0px 1px 150px #d6dee4;
+  opacity: 0.7;
+  border-radius: 0px 50px 50px 0px;
+}
+
+input::placeholder {
+  font-size: 18px;
+  opacity: 0.6;
+}
+
+.search_read {
+  display: block;
+  color: #647680;
+  cursor: pointer;
+}
+
+form.search-form_read {
+  display: flex;
+  justify-content: center;
+  margin-top: calc(50vh - 70px);
+  transition: 0.5s transform cubic-bezier(0, 0.31, 0.43, 1.47);
+}
+
+.animation_read {
+  transform: translateY(-29vh);
+}
+
+code {
+  color: black;
+  background: #F2F2F2;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: black;
+  line-height: 40px;
+  padding-top: -70px;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #f92c8b;
+}
+
+pre {
+  width: 100%;
+  overflow: scroll;
+  background: #F2F2F2;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 7px;
+}
+
+.title_read {
+  position: relative;
+  width: calc(100vw - 20px);
+  line-height: 50px;
+  max-width: 700px;
+}
+@media only screen and (max-width: 425px) {
+  .title_read {
+    font-size: 30px;
+    line-height: 35px;
+  }
+}
+
+.center-wrapper_read {
+  position: relative;
+  display: flex;
+  top: -28vh;
+  flex-direction: column;
+  color: #71818c;
+  width: 100vw;
+  align-items: center;
+}
+.center-wrapper_read.hide_read {
+  display: none;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 48px;
+  font-weight: 00;
+  text-align: center;
+  color: #20292f;
+}
+
+.specification_read {
+  font-family: 'Poppins', sans-serif;
+  margin-top: -10px;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.wrapper_read {
+  position: relative;
+  margin-top: 30px;
+  width: 100vw;
+  height: 50px;
+}
+
+.article_read {
+  text-align: justify;
+  position: absolute;
+  box-sizing: border-box;
+  letter-spacing: 1.2px;
+  max-width: 600px;
+  width: calc(100vw - 50px);
+  background: white;
+  height: auto;
+  padding: 0 30px;
+  line-height: 30px;
+  margin-bottom: 50px;
+  box-shadow: 0px 1px 150px #d6dee4;
+  align-items: center;
+  left: calc((100vw - 600px) / 2);
+}
+@media only screen and (max-width: 625px) {
+  .article_read {
+    left: 25px;
+    width: calc(100vw - 60px);
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    text-align: justify;
+    padding-left: 10px;
+  }
+}
+
+img {
+  position: relative;
+  background: #F5F5F5;
+  display: block;
+  margin: 0 !important;
+  left: -30px;
+  width: calc(100% + 60px);
+  height: 100%;
+  filter: blur(0px);
+  margin-bottom: 20px !important;
+  transition: 0.4s all cubic-bezier(0, 0, 0.2, 1);
+}
+img.blur_read {
+  filter: blur(30px);
+}
+
+video, iframe {
+  display: block;
+  margin: 0 !important;
+  width: 100%;
+  max-width: 100%;
+  height: 300px;
+  border: none;
+}
+
+blockquote {
+  border-left: #2225 solid 3px;
+  padding: 20px;
+  font-style: italic;
+}
+
+.loader_read {
+  color: #d4dce3fa;
+  font-size: 90px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  margin-top: -100px;
+  margin-left: calc(50vw - 50px);
+  position: relative;
+  animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+}
+.loader_read.hide_read {
+  display: none;
+}
+
+@keyframes load6 {
+  0% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  5%,
+  95% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+  10%,
+  59% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+  }
+  20% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+  }
+  38% {
+    box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+  }
+  100% {
+    box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+  }
+}
+@keyframes round {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+figure {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+</style>
+<script>
+const wrapper = document.querySelector('.wrapper_read')
+const date = document.querySelector('.date_read')
+const authorName = document.querySelector('.name_read')
+const articl = document.querySelector('.article_read')
+const title = document.querySelector('.title_read')
+const animate = document.querySelector('.animation_read')
+const cont = document.querySelector('.search-form_read')
+const searchBar = document.querySelector('.search-bar_read')
+const centerWrapper = document.querySelector('.center-wrapper_read')
+const hider = document.querySelector('.discription_read')
+const loader = document.querySelector('.loader_read')
+const err = document.querySelector('.error_read')
+
+
+
+const defaultURL = 'https://medium.com/@silviabastos6/exploring-the-limits-of-love-f16b8c881d0e'
+
+
+document.querySelector('.search-form_read')
+    .addEventListener('submit', submit)
+
+function submit(e) {
+  e && e.preventDefault()
+  loader.classList.remove('hide_read')
+  hider.classList.add('hide_read')
+  let letter = searchBar.value
+  cont.classList.add('animation_read')
+  if (letter !== '') {
+    centerWrapper.classList.add('hide_read')
+     err.classList.add('hide_read')
+    fetching(letter) 
+  }else{
+      loader.classList.add('hide_read')
+  } 
+}
+
+  
+document.querySelector('.click_read').addEventListener('click' , () => {
+  searchBar.value = defaultURL
+  submit()
+})
+
+function fetching(para_url){
+    const url = para_url
+    const urlToFetch  =  `https://mercury.postlight.com/parser?url=${url}`
+    
+    const headers = {
+    'x-api-key': 'sM9RNjNAYaVlQgGXlpyTKaWsC0RCyLtQv0wMxLDw'
+
+    }
+    
+    fetch(urlToFetch, {
+      headers
+    }).then(res => res.json())
+      .then(data => updateUI(data))
+      .catch(error => {
+      const err = document.querySelector('.error_read')
+      const loader = document.querySelector('.loader_read')
+      loader.classList.add('hide_read')
+      err.classList.remove('hide_read')}
+)
+
+    const updateUI = data => {
+      loader.classList.add('hide_read')
+      if (data.error){
+        err.classList.remove('hide_read')
+        centerWrapper.classList.add('hide_read')
+        return 0
+      }
+
+      const author = data.author
+      authorName.innerHTML =`${ 'by ' + author}`;
+      if (author == null){
+          authorName.innerHTML = '';
+
+      }
+      const htm = data.content
+      articl.innerHTML =`${htm}`;
+      const head = data.title
+      
+      title.innerHTML =`${head}`;
+      centerWrapper.classList.remove('hide_read')
+    }
+
+}
+var speakWorker;
+try {
+  speakWorker = new Worker('speakWorker.js');
+} catch(e) {
+  console.log('speak.js warning: no worker support');
+}
+
+function speak(text, args) {
+  var PROFILE = 1;
+
+  function parseWav(wav) {
+    function readInt(i, bytes) {
+      var ret = 0;
+      var shft = 0;
+      while (bytes) {
+        ret += wav[i] << shft;
+        shft += 8;
+        i++;
+        bytes--;
+      }
+      return ret;
+    }
+    if (readInt(20, 2) != 1) throw 'Invalid compression code, not PCM';
+    if (readInt(22, 2) != 1) throw 'Invalid number of channels, not 1';
+    return {
+      sampleRate: readInt(24, 4),
+      bitsPerSample: readInt(34, 2),
+      samples: wav.subarray(44)
+    };
+  }
+
+  function playHTMLAudioElement(wav) {
+    function encode64(data) {
+      var BASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+      var PAD = '=';
+      var ret = '';
+      var leftchar = 0;
+      var leftbits = 0;
+      for (var i = 0; i < data.length; i++) {
+        leftchar = (leftchar << 8) | data[i];
+        leftbits += 8;
+        while (leftbits >= 6) {
+          var curr = (leftchar >> (leftbits-6)) & 0x3f;
+          leftbits -= 6;
+          ret += BASE[curr];
+        }
+      }
+      if (leftbits == 2) {
+        ret += BASE[(leftchar&3) << 4];
+        ret += PAD + PAD;
+      } else if (leftbits == 4) {
+        ret += BASE[(leftchar&0xf) << 2];
+        ret += PAD;
+      }
+      return ret;
+    }
+
+    document.getElementById("audio").innerHTML=("<audio id=\"player\" src=\"data:audio/x-wav;base64,"+encode64(wav)+"\">");
+    document.getElementById("player").play();
+  }
+
+  function playAudioDataAPI(data) {
+    try {
+      var output = new Audio();
+      output.mozSetup(1, data.sampleRate);
+      var num = data.samples.length;
+      var buffer = data.samples;
+      var f32Buffer = new Float32Array(num);
+      for (var i = 0; i < num; i++) {
+        var value = buffer[i<<1] + (buffer[(i<<1)+1]<<8);
+        if (value >= 0x8000) value |= ~0x7FFF;
+        f32Buffer[i] = value / 0x8000;
+      }
+      output.mozWriteAudio(f32Buffer);
+      return true;
+    } catch(e) {
+      return false;
+    }
+  }
+
+  function handleWav(wav) {
+    var startTime = Date.now();
+    var data = parseWav(wav); // validate the data and parse it
+    // TODO: try playAudioDataAPI(data), and fallback if failed
+    playHTMLAudioElement(wav);
+    if (PROFILE) console.log('speak.js: wav processing took ' + (Date.now()-startTime).toFixed(2) + ' ms');
+  }
+
+  if (args && args.noWorker) {
+    // Do everything right now. speakGenerator.js must have been loaded.
+    var startTime = Date.now();
+    var wav = generateSpeech(text, args);
+    if (PROFILE) console.log('speak.js: processing took ' + (Date.now()-startTime).toFixed(2) + ' ms');
+    handleWav(wav);
+  } else {
+    // Call the worker, which will return a wav that we then play
+    var startTime = Date.now();
+    speakWorker.onmessage = function(event) {
+      if (PROFILE) console.log('speak.js: worker processing took ' + (Date.now()-startTime).toFixed(2) + ' ms');
+      handleWav(event.data);
+    };
+    speakWorker.postMessage({ text: text, args: args });
+  }
+}
+
+</script>
