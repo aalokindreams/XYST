@@ -1,0 +1,406 @@
+
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css"/>
+</head>
+<nav class="navbar navbar-light bg-faded">
+	<div class="row">
+		 <div class="col-sm-3">
+  			<h1 class="logo" ><i class="fa fa-youtube yt"></i><span>Vidz</span></h1>
+         </div>
+		<div class="col-sm-9">
+
+        	 <form class="form-inline " style="margin-top:5px;" id="search-form" name="search-form" onSubmit="return search()">
+             		<table width="100%">
+                    	<tr>
+                        	<td width="100%">
+                            	<div class="d3 float-right" style="width:100%;" >
+                                  <input class="form-control search-field" type="search" id="query" style="width:100%;"  placeholder="Search Youtube">
+                                  <span class="focus-border">
+                                            <i></i>
+                                        </span>
+                                    </div>
+                            </td>
+                            <td>
+                            	  <button class="btn btn-outline-danger my-2 my-sm-0 " type="submit" id="search-btn"  name="search-btn" value="">Search</button>
+                            </td>
+    				</tr>
+	              </table>
+                </form>
+        </div>
+    </div>
+
+</nav>
+
+
+<div class="content">
+<div class="container-fluid" id="results">
+
+
+
+
+</div> <!-- ENd of container fluid -->
+<div class="container-fluid">
+	<div class="row">
+    	<div class="col-sm-12">    <div id="btn-cnt"></div> </div>
+    </div>
+</div>
+</div> <!-- End of content -->
+<style>
+.yt { color:#CD201F; }
+.header { border-bottom:4px solid #cd201f; }
+.logo { width:130px; float:left; }
+.content { margin-top:0px;  }
+.search-field {     border: 1px solid #ccc;padding: 7px 14px 9px;transition: 0.4s; }
+.btn { cursor:pointer; }
+.search-field ~ .focus-border:before,
+.search-field ~ .focus-border:after{content: ""; position: absolute; top: 0; right: 0; width: 0; height: 2px; background-color: #CD201F; transition: 0.2s; transition-delay: 0.2s;}
+.search-field ~ .focus-border:after{top: auto; bottom: 0; right: auto; left: 0; transition-delay: 0.6s;}
+.search-field ~ .focus-border i:before,
+.search-field ~ .focus-border i:after{content: ""; position: absolute; top: 0; left: 0; width: 2px; height: 0; background-color: #CD201F; transition: 0.2s;}
+.search-field ~ .focus-border i:after{left: auto; right: 0; top: auto; bottom: 0; transition-delay: 0.4s;}
+.search-field:focus ~ .focus-border:before,
+.search-field:focus ~ .focus-border:after{width: 100%; transition: 0.2s; transition-delay: 0.6s;}
+.search-field:focus ~ .focus-border:after{transition-delay: 0.2s;}
+.search-field:focus ~ .focus-border i:before,
+.search-field:focus ~ .focus-border i:after{height: 100%; transition: 0.2s;}
+.search-field:focus ~ .focus-border i:after{transition-delay: 0.4s;}
+.d3{float: left; width: auto; margin-right:10px;  position: relative;}
+#results {   list-style:none;  }
+#results .row { margin-bottom:10px; border-bottom:1px dotted #ccc; padding-bottom:10px; }
+.cTitle { color:#CD201F;  }
+#results img { padding:10px; border:1px solid #ccc; }
+#results h4 { color:#9a9b9c; }
+#buttons { border:1px solid red; }
+.paging-button {  }
+.button-container { margin:10px 0; }
+/* Global Button Styles */
+button.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	border-radius: 0;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+button.animated-button:link:after, a.animated-button:visited:after {
+	content: "";
+	position: absolute;
+	height: 0%;
+	left: 50%;
+	top: 50%;
+	width: 150%;
+	z-index: -1;
+	-webkit-transition: all 0.75s ease 0s;
+	-moz-transition: all 0.75s ease 0s;
+	-o-transition: all 0.75s ease 0s;
+	transition: all 0.75s ease 0s;
+}
+button.animated-button:link:hover, a.animated-button:visited:hover {
+	color: #FFF;
+	text-shadow: none;
+}
+button.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+	height: 450%;
+}
+button.animated-button:link, a.animated-button:visited {
+	position: relative;
+	display: block;
+	margin: 30px auto 0;
+	padding: 14px 15px;
+	color: #fff;
+	font-size:14px;
+	border-radius: 0;
+	font-weight: bold;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	letter-spacing: .08em;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.2);
+	-webkit-transition: all 1s ease;
+	-moz-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	transition: all 1s ease;
+}
+
+button.animated-button.thar-three {
+		float:right; width:150px; margin-left:10px;
+	color: #CD201F;
+	cursor: pointer;
+	background:#FFF;
+	display: block;
+	position: relative;
+	border: 2px solid #CD201F;
+	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+0s;
+}
+button.animated-button.thar-three:hover {
+	color: #FFF !important;
+	background-color: transparent;
+	text-shadow: nthree;
+}
+button.animated-button.thar-three:hover:before {
+	left: 0%;
+	right: auto;
+	width: 100%;
+}
+button.animated-button.thar-three:before {
+	display: block;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 100%;
+	width: 0px;
+	z-index: -1;
+	content: '';
+	color: #000 !important;
+	background: #CD201F;
+	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+0s;
+}
+
+button.animated-button.thar-four {
+	float:right; width:150px;
+	color: #CD201F;
+	background:#FFF;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	border: 2px solid #CD201F;
+	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+0s;
+}
+button.animated-button.thar-four:hover {
+	color: #FFF !important;
+	background-color: transparent;
+	text-shadow: nfour;
+}
+button.animated-button.thar-four:hover:before {
+	right: 0%;
+	left: auto;
+	width: 100%;
+}
+button.animated-button.thar-four:before {
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 0px;
+	z-index: -1;
+	content: '';
+	color: #000 !important;
+	background: #CD201F;
+	transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+0s;
+}
+.total-results {  margin-top:7px; display:inline-block; }
+@media(max-width:360px) {
+	.total-results { display:block; }
+}
+</style>
+<script>
+
+
+
+
+$(function() {
+	$('#search-form').submit(function(e) {
+		e.preventDefault();
+	})
+});
+
+function search() {
+	//Clear any previous results
+	$('#results').html('');
+	$('#btn-cnt').html('');
+
+	//Get form input
+	var q = $('#query').val();
+
+	//Run GET Request 	on API
+	$.get(
+		"https://www.googleapis.com/youtube/v3/search",{
+			part: 'snippet, id',
+			q: q,
+			type: 'video',
+			key: 'AIzaSyAShx8QLS_bc-cvTWKPfKdNLq6P79mDifc'},
+			function(data) {
+				var nextPageToken = data.nextPageToken;
+				var prevPageToken = data.prevPageToken;
+				var pageInfo = data.pageInfo;
+
+				//Log data
+				console.log(data);
+
+				$.each(data.items, function(i, item) {
+						//Get output
+						var output = getOutput(item);
+
+						//Display results
+						$('#results').append(output);
+				});
+
+				var buttons = getButtons(prevPageToken,nextPageToken, pageInfo);
+
+				//Display buttons
+				$('#results').prepend(buttons);
+				$('#btn-cnt').append(buttons);
+			}
+	);
+}
+
+//Build Output
+	function getOutput(item) {
+		var videoId = item.id.videoId;
+		var title = item.snippet.title;
+		var description = item.snippet.description;
+		var thumb = item.snippet.thumbnails.high.url;
+		var channelTitle = item.snippet.channelTitle;
+		var videoDate = item.snippet.publishedAt;
+
+		//Build Output String
+		var output = '<div class="row">' +
+		'<div class="col-sm-2">' +
+			'<a data-fancybox href="https://www.youtube.com/watch?v=' + videoId + '"><img class="img-fluid" src="' + thumb + '"></a>' +
+		'</div>' +
+		'<div class="col-sm-10">' +
+			'<h4><a data-fancybox href="https://www.youtube.com/watch?v=' + videoId + '">' + title + '</a></h4>' +
+			'<small>By <span class="cTitle">' + channelTitle + '</span> on '+ videoDate + '</small>' +
+			'<p>' + description + '</p>' +
+		'</div>' +
+		'</div>';
+		return output;
+
+	}
+
+//Build the Buttons
+	function getButtons(prevPageToken,nextPageToken,pageInfo) {
+
+		$('#btn-cnt').html('');
+		var btnoutput;
+		var q = $('#query').val();
+		if(!prevPageToken) {
+			btnoutput = '<div class="button-container">' +
+			'<span class="total-results"><label>Total Results :</label>' + pageInfo.totalResults + '</span>' +
+			'<button id="next-button" class="btn animated-button thar-three" data-token="' + 	nextPageToken + '" data-query="' + q +'"' +
+			'onclick="nextPage();">Next Page</button><div class="clearfix"></div></div>';
+			console.log(nextPageToken);
+		} else {
+			console.log(nextPageToken);
+			btnoutput = '<div class="button-container">' +
+			'<span class="total-results"><label>Total Results :</label>' + pageInfo.totalResults + '</span>' +
+			'<button id="next-button" class="btn  animated-button thar-three" data-token="' + 	nextPageToken + '" data-query="' + q +'"' +
+			'onclick="nextPage();">Next Page</button>' +
+			'<button id="prev-button" class="btn  animated-button thar-four" data-token="' + 	prevPageToken + '" data-query="' + q +'"' +
+			'onclick="prevPage();">Previous Page</button>' +
+			'<div class="clearfix"></div></div>';
+		}
+		return btnoutput;
+	}
+
+function nextPage() {
+
+		var token = $('#next-button').data('token');
+		var q = $('#next-button').data('query');
+		//Clear any previous results
+	$('#results').html('');
+	$('#btn-cnt').html('');
+
+	//Get form input
+	q = $('#query').val();
+
+	//Run GET Request 	on API
+	$.get(
+		"https://www.googleapis.com/youtube/v3/search",{
+			part: 'snippet, id',
+			q: q,
+			pageToken: token,
+			type: 'video',
+			key: 'AIzaSyAShx8QLS_bc-cvTWKPfKdNLq6P79mDifc'},
+			function(data) {
+				var nextPageToken = data.nextPageToken;
+				var prevPageToken = data.prevPageToken;
+				var pageInfo = data.pageInfo;
+				//Log data
+				console.log(data);
+
+				$.each(data.items, function(i, item) {
+						//Get output
+						var output = getOutput(item);
+
+						//Display results
+						$('#results').append(output);
+				});
+
+				var buttons = getButtons(prevPageToken,nextPageToken,pageInfo);
+
+				//Display buttons
+				$('#results').prepend(buttons);
+				$('#btn-cnt').append(buttons);
+			}
+		);
+
+}
+
+function prevPage() {
+
+		var token = $('#prev-button').data('token');
+		var q = $('#prev-button').data('query');
+		//Clear any previous results
+	$('#results').html('');
+	$('#btn-cnt').html('');
+
+	//Get form input
+	q = $('#query').val();
+
+	//Run GET Request 	on API
+	$.get(
+		"https://www.googleapis.com/youtube/v3/search",{
+			part: 'snippet, id',
+			q: q,
+			pageToken: token,
+			type: 'video',
+			key: 'AIzaSyAShx8QLS_bc-cvTWKPfKdNLq6P79mDifc'},
+			function(data) {
+				var nextPageToken = data.nextPageToken;
+				var prevPageToken = data.prevPageToken;
+				var pageInfo = data.pageInfo;
+				//Log data
+				console.log(data);
+
+				$.each(data.items, function(i, item) {
+						//Get output
+						var output = getOutput(item);
+
+						//Display results
+						$('#results').append(output);
+				});
+
+				var buttons = getButtons(prevPageToken,nextPageToken,pageInfo);
+
+				//Display buttons
+				$('#results').prepend(buttons);
+				$('#btn-cnt').append(buttons);
+			}
+		);
+
+}
+</script>
