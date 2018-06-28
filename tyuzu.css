@@ -1,1 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+* {
+  text-decoration : none;
+  margin : 0px;
+  padding : 0px;
+  font-family: 'Open Sans', sans-serif;  
+}
+.post-title {
+  font-size : 1.1em;
+  font-color : #000;
+}
