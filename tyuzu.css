@@ -3,3 +3,14 @@
   margin : 0px;
   padding : 0px;
 }
+.bg-light {
+    background-color: #ffffff!important;
+}
+#header h1 {
+    color: #fff;
+    line-height: 150px;
+}
+#header {
+    background: dodgerblue;
+    height: 150px;
+}
