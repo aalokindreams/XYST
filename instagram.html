@@ -1,0 +1,687 @@
+<html>
+   <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <meta charset='UTF-8'/>
+      <meta content='width=device-width, initial-scale=1' name='viewport'/>
+   </head>
+   <body>
+      <style>
+         body {
+         font-family :-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         font-weight: 400;
+         line-height: 1.6;
+         max-width: 400px;
+         margin: 0 auto;
+         background: #ffffff url(https://www.toptal.com/designers/subtlepatterns/patterns/memphis-colorful.png);
+         }
+         body:before {
+         background: url(https://www.transparenttextures.com/patterns/az-subtle.png);
+         content: '';
+         display: block;
+         height: 100%;
+         left: 0;
+         opacity: .5;
+         position: absolute;
+         top: 0;
+         width: 100%;
+         z-index: -1;
+         }
+         * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         vertical-align: baseline;
+         text-decoration: none;
+         list-style-type: none;
+         }
+         .row {
+         position: relative;
+         display: flex;
+         background-image: linear-gradient(whitesmoke, #e6e6e6);
+         justify-content: space-between;
+         align-items: center;
+         padding: 0 0.4rem;
+         width: 100%;
+         height: 3rem;
+         /*border-bottom: 1px solid #d8d8d8;*/
+         top: 0px;
+         box-shadow: 0 1px 6px #0000008f;
+         }
+         .ticons {
+         fill: none;
+         stroke-width: 1.8;
+         stroke: #000000;
+         stroke-linecap: round;
+         stroke-linejoin: round;
+         transition: .2s ease;
+         height: 2.4rem;
+         filter: drop-shadow(0px 1px 2px #00000055);
+         }
+         .form-inline {
+         align-self :center;
+         width: 100%;
+         max-width: 700px;
+         }
+         .form_container {
+         display: flex;
+         border: solid 3px #ffffff;
+         border-radius: 10px;
+         /*background-image: linear-gradient(white, white), radial-gradient(circle at top left, #ffffff,#ffffff);*/
+         background-origin: border-box;
+         background-clip: content-box, border-box;
+         box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.33);
+         }
+         button {
+         background-image: linear-gradient(dimgrey, black, #5f5f5f);
+         border: none;
+         outline: none;
+         color: white;
+         border-radius: 0 8px 8px 0;
+         padding: 0rem 0.6rem;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         /* box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.19); */
+         }
+         .srchicon {
+         fill: #ffffff;
+         height: 2rem;
+         margin: 0rem 0.1rem;
+         }
+         .search-field {
+         -moz-box-sizing: border-box;
+         -webkit-box-sizing: border-box;
+         box-sizing: border-box;
+         height: 2.8rem;
+         border: 4px;
+         border-radius: 8px 0 0 8px;
+         outline: none;
+         padding: 0rem 1rem;
+         background-image: linear-gradient(whitesmoke, #e6e6e6);
+         color: #000;
+         font-size: 1.1rem;
+         /* box-shadow: 0px 0px 0px 3px rgb(0, 0, 0); */
+         }
+         .formcon {
+         padding: 0.2rem 0.4rem;
+         display: flex;
+         justify-content: center;
+         }
+         @media screen and (min-width: 1200px) {
+         body::-webkit-scrollbar {
+         width: 12px;
+         }
+         body::-webkit-scrollbar-thumb {
+         background-color: #555;
+         }
+         }
+         h2 {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         }
+      </style>
+      <div class="trdcon">
+         <div class="v-tab">
+            <div class="v-tab_container">
+               <div id="vtab1" class="v-tab_content" style="display: block;">
+                  <div class="row">
+                     <div class="hidemob">
+                        <svg class="ticons" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img" stroke="#000000">
+                           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                           <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                     </div>
+                     <h2>Instagram</h2>
+                     <div class="hidemob">
+                        <svg class="ticons" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img" stroke="#000000">
+                           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                           <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                     </div>
+                  </div>
+                  <div class="tabcontent">
+                     <div id="app"></div>
+                  </div>
+               </div>
+               <!-- #tab1 -->
+               <div id="vtab2" class="v-tab_content" style="display: none;">
+                  <div class="formcon">
+                     <form class="form-inline " id="search-form" name="search-form" onsubmit="return search()">
+                        <div width="100%" class="form_container">
+                           <div class="d3 float-right" style="width:100%;">
+                              <input class="form-control search-field" type="search" id="query" style="width:100%;" placeholder="Web 'em up">
+                           </div>
+                           <button class="" type="submit" id="search-btn" name="search-btn" value="">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 57.966 57.966" class="srchicon">
+                                 <path d="M55.146 51.887L41.588 37.786A22.926 22.926 0 0 0 46.984 23c0-12.682-10.318-23-23-23s-23 10.318-23 23 10.318 23 23 23c4.761 0 9.298-1.436 13.177-4.162l13.661 14.208c.571.593 1.339.92 2.162.92.779 0 1.518-.297 2.079-.837a3.004 3.004 0 0 0 .083-4.242zM23.984 6c9.374 0 17 7.626 17 17s-7.626 17-17 17-17-7.626-17-17 7.626-17 17-17z"></path>
+                              </svg>
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="tabcontent">
+                     <p>Dui sociosqu vitae varius nulla habitasse inceptos pharetra feugiat curabitur, nibh molestie est semper mattis malesuada viverra auctor, duis pulvinar quam diam scelerisque ut nullam condimentum ut per conubia feugiat ultricies tristique dictum.
+                     </p>
+                  </div>
+               </div>
+               <!-- #tab2 -->
+               <div id="vtab3" class="v-tab_content" style="display: none;">
+                  <div class="tabcontent">
+                     <p>Morbi cursus dapibus ut donec commodo consequat arcu turpis hendrerit luctus nulla aliquam tempor diam massa faucibus vitae vehicula, ultricies volutpat nullam phasellus dui auctor senectus morbi tellus potenti iaculis bibendum ipsum sodales non.
+                     </p>
+                  </div>
+               </div>
+               <!-- #tab3 -->
+               <div id="vtab4" class="v-tab_content" style="display: none;">
+                  <div class="tabcontent">
+                     <p>Per ligula mollis vulputate tortor urna platea non maecenas fames, maecenas ante senectus suspendisse ultrices aptent torquent laoreet scelerisque ut integer arcu magna ultricies mollis.
+                     </p>
+                  </div>
+               </div>
+               <!-- #tab4 --> 
+               <div id="vtab5" class="v-tab_content" style="display: none;">
+                  <div class="tabcontent">
+                     <div class="wrapper">
+                        <div class="card">
+                           <div class="card__body">
+                              <div class="container">
+                                 <div class="grid">
+                                    <h1>Settings</h1>
+                                 </div>
+                              </div>
+                              <div class="container">
+                                 <div class="grid grid--half">
+                                    <h3>General</h3>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Start at login</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Hide window at start up</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Keep window visible as bg app</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Keep window above other apps</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Show icon in dock</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Hide &quot;Unlock Extreme&quot; button</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <h3>Desktop Status Menu</h3>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Use precentages</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Icon visible</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Text information</label>
+                                       <div class="form-item__control">
+                                          <select class="control control--select">
+                                             <option selected="selected">Default</option>
+                                             <option>Option 1</option>
+                                             <option>Option 2</option>
+                                             <option>Option 3</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Text size</label>
+                                       <div class="form-item__control">
+                                          <div class="radio">
+                                             <div class="radio__item"><span class="u-text--small">A</span></div>
+                                             <div class="radio__item is-active"><span class="u-text--normal">A</span></div>
+                                             <div class="radio__item"><span class="u-text--large">A</span></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <h3>Performance</h3>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Threshold level</label>
+                                       <div class="form-item__control"><small><strong><span class="slider__value">500</span><span>mb</span></strong></small></div>
+                                       <div class="slider">
+                                          <input class="slider__input" type="range" value="500" min="0" max="1000"/>
+                                          <div class="slider__positive" style="width: 50%;"></div>
+                                       </div>
+                                    </div>
+                                    <p><small>If the available memory goes below this amount, the status bar text will turn red.</small></p>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Auto clean</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <p><small>Automatically clean when available memory drops below the above threshold. Auto clean is limited to once every 3 minutes.</small></p>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Disable auto clean cooldown</label>
+                                       <div class="form-item__control toggle">
+                                          <div class="toggle__handle"></div>
+                                       </div>
+                                    </div>
+                                    <p><small>Auto clean cooldown: <strong>136 seconds</strong></small></p>
+                                    <div class="form-item">
+                                       <label class="form-item__label">Refresh interval</label>
+                                       <div class="form-item__control"><small><strong><span class="slider__value">5</span><span>&nbsp;seconds</span></strong></small></div>
+                                       <div class="slider">
+                                          <input class="slider__input" type="range" value="5" min="0" max="20"/>
+                                          <div class="slider__positive" style="width: 25%;"></div>
+                                       </div>
+                                    </div>
+                                    <p><small>If the available memory goes below this amount, the status bar text will turn red.</small></p>
+                                    <div class="buttons">
+                                       <button class="button">Done</button>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- #tab5 --> 
+            </div>
+            <div class="v-tab_tab-head">
+               <li rel="vtab1" class="active">
+                  <svg class="ticons" viewBox="0 0 24 24"  width="100%" height="100%" role="img" stroke="#000000">
+                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                     <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line>
+                  </svg>
+               </li>
+               <li rel="vtab2" class="">
+                  <svg class="ticons" viewBox="0 0 24 24"  width="100%" height="100%" role="img" stroke="#000000">
+                     <circle cx="11" cy="11" r="8"></circle>
+                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+               </li>
+               <li rel="vtab3" class="">
+                  <svg class="ticons" viewBox="0 0 24 24"  width="100%" height="100%" role="img" stroke="#000000">
+                     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                     <line x1="12" y1="8" x2="12" y2="16"></line>
+                     <line x1="8" y1="12" x2="16" y2="12"></line>
+                  </svg>
+               </li>
+               <li rel="vtab4" class="">
+                  <svg class="ticons" viewBox="0 0 24 24"  width="100%" height="100%" role="img" stroke="#000000">
+                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                  </svg>
+               </li>
+               <li rel="vtab5" class="">
+                  <svg class="ticons" viewBox="0 0 24 24"  width="100%" height="100%" role="img" stroke="#000000">
+                     <line x1="4" y1="21" x2="4" y2="14"></line>
+                     <line x1="4" y1="10" x2="4" y2="3"></line>
+                     <line x1="12" y1="21" x2="12" y2="12"></line>
+                     <line x1="12" y1="8" x2="12" y2="3"></line>
+                     <line x1="20" y1="21" x2="20" y2="16"></line>
+                     <line x1="20" y1="12" x2="20" y2="3"></line>
+                     <line x1="1" y1="14" x2="7" y2="14"></line>
+                     <line x1="9" y1="8" x2="15" y2="8"></line>
+                     <line x1="17" y1="16" x2="23" y2="16"></line>
+                  </svg>
+               </li>
+            </div>
+         </div>
+      </div>
+      <style>
+         .v-tab {
+         display: flex;
+         flex-direction: column;
+         }
+         #app {
+         margin-bottom: 3rem;
+         }
+         .v-tab_tab-head {
+         margin: 0;
+         padding: 0;
+         list-style: none;
+         position: fixed;
+         width: 100%;
+         display: flex;
+         max-width: 400px;
+         bottom: 0;
+         border-top: 1px solid #eee;
+         }
+         .v-tab_tab-head li:hover {
+         background-color: #f5f5f5;
+         color: #000;
+         }
+         .v-tab_tab-head li.active {
+         background-image: linear-gradient(white, #ffffff);
+         display: block;
+         color: #000000 !important;
+         border-top: 3px solid #000;
+         }
+         .v-tab_tab-head li {
+         cursor: pointer;
+         height: 3rem;
+         padding: 0.2rem;
+         background-image: linear-gradient(whitesmoke, #e6e6e6);
+         border-bottom: 0px;
+         overflow: hidden;
+         position: relative;
+         width: 100%;
+         align-items: center;
+         text-decoration: none;
+         }
+         .v-tab_container {
+         float: left;
+         width: 100%;
+         height: 100%;
+         min-height: 132px;
+         }
+         .v-tab_content {
+         /*padding: 10px 20px;*/
+         display: none;
+         }
+         .v-tab_content > :first-child {
+         margin-top: 0;
+         }
+         .tabcontent {
+         padding: 0;
+         }
+      </style>
+      <script>
+         $(".v-tab_content").hide();
+         $(".v-tab_content:first").show();
+         
+         $(".v-tab_tab-head li").click(function() {
+         
+           $(".v-tab_content").hide();
+           var activeTab = $(this).attr("rel"); 
+           $("#"+activeTab).fadeIn();		
+           $(".v-tab_tab-head li").removeClass("active");
+           $(this).addClass("active");
+         
+         
+         });
+         
+         
+      </script>
+      <script>
+         //        fetch('https://api.reddit.com/r/technology/top/?sort=top&t=all')
+             fetch('https://api.reddit.com/r/technology/new/?sort=new&t=all')
+           .then(res=>res.json())
+                 .then(res=>res.data.children)
+                 .then(res=>res.map(post=>({
+                   author: post.data.author,
+                   link: post.data.url,
+                   img: post.data.thumbnail,
+                   title: post.data.title
+                 })))
+                 .then(res=>res.map(render))
+                 .then(res=>console.log(res))
+                 const app = document.querySelector('#app');
+                 const render = post => {
+                   const node = document.createElement('div');
+                   node.innerHTML = `
+                     <h2 class="raditechtwo">
+                       <a href="${post.link}" class="raditae">
+                         <img src="${post.img}" class="raditimg" />
+                         <span class="raditspan">${post.title}</span>
+                       </a>
+                    </h2>`;
+                   app.appendChild(node);
+                 }
+                 
+      </script>
+      <!--
+         -->
+      <style>
+         .raditechtwo {
+         margin-bottom: 0.4rem;
+         box-shadow: 1px 2px 10px #00000014;
+         background: #ffffff;
+         }
+         .raditae {
+         display: flex;
+         color: #000000;
+         }
+         .raditspan {
+         padding: 0 0.6rem;
+         font-size: 20px;
+         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+         }    
+      </style>
+      <style>
+         button:focus, button:active, input:focus, input:active, select:focus, select:active, textarea:focus, textarea:active {
+         outline: 0;
+         }
+         h3 {
+         padding: 0.4rem 0;
+         }
+         .card {
+         display: block;
+         width: 100%;
+         margin: auto;
+         max-width: 1200px;
+         background: #9c88ff;
+         color: white;
+         border-radius: .8rem;
+         margin-bottom: 2rem;
+         }
+         .container {
+         display: flex;
+         width: 100%;
+         flex-wrap: wrap;
+         flex-direction: column;
+         justify-content: space-between;
+         }
+         .grid {
+         flex: 1;
+         padding: 1rem;
+         position: relative;
+         }
+         .toggle {
+         max-width: 62px;
+         height: 32px;
+         background: #7059e2;
+         border-radius: 999px;
+         position: relative;
+         transition: all 300ms ease;
+         cursor: pointer;
+         }
+         .toggle__handle {
+         height: 24px;
+         width: 24px;
+         position: absolute;
+         top: 50%;
+         left: 4px;
+         -webkit-transform: translateY(-50%);
+         transform: translateY(-50%);
+         background: white;
+         border-radius: 50%;
+         transition: all 300ms ease;
+         }
+         .toggle.is-on {
+         background: white;
+         transition: all 300ms ease;
+         }
+         .toggle.is-on .toggle__handle {
+         left: 34px;
+         background: #9c88ff;
+         transition: all 300ms ease;
+         }
+         .form-item {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin-bottom: 1.5rem;
+         flex-wrap: wrap;
+         }
+         .form-item__control {
+         width: 40%;
+         text-align: right;
+         }
+         .control {
+         background: transparent;
+         color: inherit;
+         display: block;
+         width: 100%;
+         border-radius: .3rem;
+         padding: .4rem;
+         border: 1px solid rgba(255, 255, 255, 0.3);
+         }
+         .control:hover, .control:focus {
+         background: #7059e2;
+         border-color: transparent;
+         }
+         .radio {
+         display: inline-block;
+         }
+         .radio__item {
+         display: inline-block;
+         color: #7059e2;
+         cursor: pointer;
+         transition: all 300ms ease;
+         }
+         .radio__item:not(:last-of-type) {
+         margin-right: 1rem;
+         }
+         .radio__item.is-active {
+         color: white;
+         transition: all 300ms ease;
+         }
+         .u-text--small {
+         font-size: 1.3rem;
+         }
+         .u-text--normal {
+         font-size: 1.6rem;
+         }
+         .u-text--large {
+         font-size: 2.2rem;
+         }
+         .slider {
+         width: 100%;
+         position: relative;
+         }
+         .slider__positive {
+         width: 100%;
+         height: 5px;
+         background: white;
+         position: absolute;
+         top: 90%; /*80%;*/
+         -webkit-transform: translateY(-50%);
+         transform: translateY(-50%);
+         pointer-events: none;
+         }
+         .slider__input {
+         margin-top: 1rem;
+         display: block;
+         -webkit-appearance: none;
+         -moz-appearance: none;
+         appearance: none;
+         width: 100%;
+         height: 5px;
+         background: #7059e2;
+         outline: none;
+         transition: all 300ms ease;
+         }
+         .slider__input::-webkit-slider-thumb {
+         -webkit-appearance: none;
+         appearance: none;
+         width: 24px;
+         height: 24px;
+         border-radius: 50%;
+         border: 4px solid white;
+         background: white;
+         cursor: pointer;
+         position: relative;
+         transition: all 300ms ease;
+         }
+         .slider__input::-webkit-slider-thumb:focus, .slider__input::-webkit-slider-thumb:active {
+         box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.2);
+         transition: all 300ms ease;
+         }
+         .button {
+         border: 0;
+         background: white;
+         color: #9c88ff;
+         text-transform: uppercase;
+         letter-spacing: .05em;
+         font-weight: 700;
+         border-radius: .4rem;
+         padding: .6rem 1.4rem;
+         font-size: 1.4rem;
+         line-height: 1;
+         cursor: pointer;
+         }
+         .button:hover, .button:focus {
+         background: #7059e2;
+         color: white;
+         transition: all 300ms ease;
+         }
+         .buttons {
+         position: relative;
+         margin-top: 3rem;
+         justify-content: flex-end;
+         display: flex;
+         }
+         .buttons .button {
+         margin-left: 1rem;
+         }
+      </style>
+      <script>
+         console.clear();
+         
+         var toggle = document.querySelectorAll('.toggle');
+         
+         for (var i = 0; toggle.length > i; i++) {
+             toggle[i].addEventListener('click', function () {
+                 this.classList.toggle('is-on');
+             });
+         }
+         
+         var radioItem = document.querySelectorAll('.radio__item');
+         
+         for (var i = 0; radioItem.length > i; i++) {
+             radioItem[i].addEventListener('click', function () {
+                 var siblingItems = this.parentNode.getElementsByClassName('radio__item');
+                 for (var i = 0; siblingItems.length > i; i++) {
+                     siblingItems[i].classList.remove('is-active');
+                 }
+                 this.classList.toggle('is-active');
+             });
+         }
+         
+         var sliderInput = document.querySelectorAll('.slider__input');
+         
+         for (var i = 0; sliderInput.length > i; i++) {
+             sliderInput[i].addEventListener('input', function () {
+                 var valueContainer = this.parentNode.parentNode.querySelector('.slider__value');
+                 var sliderValue = this.value;
+                 var maxVal = this.getAttribute('max');
+                 var posWidth = this.value / maxVal;
+                 this.parentNode.querySelector('.slider__positive').style.width = posWidth * 100 + '%';
+                 valueContainer.innerHTML = sliderValue;
+             });
+         }
+         
+      </script>
+   </body>
+</html>
